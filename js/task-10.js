@@ -13,10 +13,10 @@
 // Создай функцию destroyBoxes(), которая очищает содержимое div#boxes,
 // тем самым удаляя все созданные элементы.
 
-
 const btnCreate = document.querySelector('[data-create]');
 const btnDestroy = document.querySelector('[data-destroy]');
-let created;
+let created = true;
+let firstBoxSize = 30;
 
   const elementsCollection = {
     inputQty: document.querySelector('#controls input'),
@@ -26,7 +26,6 @@ let created;
 btnCreate.addEventListener('click', () => {   
    createBoxes();
    console.log("ButtonCreate was clicked");
-  created = true;
  });
    
   btnDestroy.addEventListener('click', () => {
@@ -34,41 +33,30 @@ btnCreate.addEventListener('click', () => {
    console.log("ButtonDestroy was clicked");
    });
 
-    let firstBoxWidth = 30;
-    let firstBoxHeight = 30;
-
-
 function createBoxes(amount) {
-  if (created) {
-    destroyBoxes();
+    if (created) {
+    firstBoxSize = 30;
 }
   amount = elementsCollection.inputQty.value;
 
   for (let i = 0; i < amount; i += 1) {
 
     const box = document.createElement('div');
-    box.style.width = `${firstBoxWidth}px`;
-    box.style.height = `${firstBoxHeight}px`;
+    box.style.width = `${firstBoxSize}px`;
+    box.style.height = `${firstBoxSize}px`;
 
     box.style.backgroundColor = getRandomHexColor();
 
     elementsCollection.divBoxes.append(box);
 
-    firstBoxWidth += 10;
-    firstBoxHeight += 10;
+    firstBoxSize += 10;
   }
   }
 
 function destroyBoxes() {
-  created = false;
-  const divBoxesRemove = document.querySelector('#boxes').children;
-
-  Array.from(divBoxesRemove).forEach(function (element) {
-    element.remove();
-  })
-  
-    firstBoxWidth = 30;
-    firstBoxHeight = 30;
+  elementsCollection.divBoxes.innerHTML = "";
+  firstBoxSize = 30;
+  elementsCollection.inputQty.value = '';
 }
 
 function getRandomHexColor() {

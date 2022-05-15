@@ -2,6 +2,7 @@
 
 const categoriesList = document.querySelector('#categories').children;
 const categoriesItem = document.querySelectorAll('.item');
+const categoriesDescription = document.querySelectorAll('.item ul');
 
 // Посчитает и выведет в консоль количество категорий в ul#categories, то есть элементов li.item.
 
@@ -12,7 +13,10 @@ console.log('Number of categories:', categoriesItem.length);
 // и количество элементов в категории(всех вложенных в него < li >).
 
     categoriesItem.forEach((category) => {
-        console.log('Category: ' + category.querySelector('h2').textContent)
-        console.log('Elements: ' + category.querySelectorAll('li').length)
+        console.log('Category: ' + category.firstElementChild.textContent)
+        console.log('Elements: ' + category.lastElementChild.children.length)
     }
         )
+
+
+        

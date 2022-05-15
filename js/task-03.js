@@ -8,7 +8,6 @@
 // Добавь минимальное оформление галереи флексбоксами или гридами через CSS классы.
 
 
-
 const images = [
   {
     url: 'https://images.pexels.com/photos/140134/pexels-photo-140134.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
@@ -26,20 +25,12 @@ const images = [
 
 const galleryList = document.querySelector('.gallery');
 
-const galleryEls = images.map(option => {
+const galleryItemsMarkup = createGalleryItems(images);
 
-const galleryEl = document.createElement('li');
-const imageEl = document.createElement('img');
+function createGalleryItems(items) {
+  return items.map(({ url, alt }) => {
+    return ` <img src=${url} alt=${alt} class ='gallery-item' width="340" height="300">`;
+  }).join('');
+}
 
-  imageEl.src = option.url;
-  imageEl.alt = option.alt; 
-
-galleryEl.classList.add('gallery-item');
-
-galleryEl.insertAdjacentHTML('afterbegin', `<img src=${imageEl.src} alt=${imageEl.alt} width="370">`);
-  
-  return galleryEl;
-});
-
-
-galleryList.append(...galleryEls);
+galleryList.insertAdjacentHTML('afterbegin', galleryItemsMarkup);
