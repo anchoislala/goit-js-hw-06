@@ -60,14 +60,19 @@
 const incrementBtn = document.querySelector('[data-action="increment"]');
 const decrementBtn = document.querySelector('[data-action="decrement"]');
 const value = document.querySelector('#value');
+let counter = 0;
 
 incrementBtn.addEventListener('click', onIncrementBtnClick);
 decrementBtn.addEventListener('click', onDecrementBtnClick);
 
 function onIncrementBtnClick() {
-    value.textContent = parseInt(value.textContent)+1;  //value.textContent += 1;
+    counter += 1; 
+    value.textContent = counter;
+    // value.textContent = parseInt(value.textContent)+1;  //value.textContent += 1;
 }
 
 function onDecrementBtnClick() {
-    value.textContent = parseInt(value.textContent)-1; //value.textContent -= 1;
+    counter -= 1; 
+    value.textContent = counter;
+    // value.textContent = parseInt(value.textContent)-1; //value.textContent -= 1;
 }
